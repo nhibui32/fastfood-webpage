@@ -37,20 +37,25 @@ export default function Signup() {
                 <p className='border w-[30px]'></p>
                 <p className='text-gray-500'>Or sign up using your email address</p>
             </div>
-
+            {/* <div className='flex flex-col desktop:w-1/2  relative justify-center '>
+                    <label>Your email</label>
+                    <input type="email" placeholder='Nhibui0302@gmail.com' className='border rounded-2xl pl-5 ml-3 h-12 '/>
+            </div> */}
             <div className='desktop:flex desktop:gap-10'>
-                <label className='flex flex-col desktop:w-1/2'>Name
-                    <input type="text" placeholder='Nhi Bui' className='border rounded-2xl pl-5 ml-3 h-12'/>
-                </label>
+                 <div className='flex flex-col desktop:w-1/2  relative justify-center '>
+                    <label>Name</label>
+                    <input type="text" placeholder='Nhi Bui' className='border rounded-2xl pl-5 ml-3 h-12 '/>
+                </div>
 
-                <label className='flex flex-col desktop:w-1/2'>User Name
-                    <input type="text" placeholder='buin21' className='border rounded-2xl pl-5 ml-3 h-12'/>
-                </label>
+                <div className='flex flex-col desktop:w-1/2  relative justify-center '>
+                    <label htmlFor="User Name">User Name</label>
+                    <input type="text" placeholder='buin21' className='border rounded-2xl pl-5 ml-3 h-12 '/>
+                </div>
             </div>
 
 
             <div className='desktop:flex desktop:gap-10'>
-                <label className='flex flex-col desktop:w-1/2'>Your email
+                <label className='flex flex-col desktop:w-1/2 relative'>Your email
                     <input type="email" name="" id="email" placeholder='Nhibui0302@gmail.com' className='border rounded-2xl pl-5 ml-3 h-12'/>
                 </label>
 

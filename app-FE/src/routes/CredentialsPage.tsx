@@ -35,10 +35,8 @@ export default function CredentialsPage() {
         <div className='flex gap-3'>
           <p className='text-gray-600 hidden desktop:flex gap-2'>Already a member?</p>
           <span className='text-blue-900 cursor-pointer' onClick={signInPage}> SignIn </span>
-        </div>
-        
-        }
-          
+        </div>       
+        }         
       </div>
     )
   }

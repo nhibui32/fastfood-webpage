@@ -39,9 +39,10 @@ const SignIn:React.FC<CredentialType> = ({type}) =>{
             </div>
 
             <div className='desktop:flex desktop:gap-10'>
-                <label className='flex flex-col desktop:w-1/2'>Your email
-                    <input type="email" placeholder='Enter your email address' className='border rounded-2xl pl-5 ml-3 h-12'/>
-                </label>
+                <div className='flex flex-col desktop:w-1/2  relative justify-center '>
+                    <label>Your email</label>
+                    <input type="email" placeholder='Nhibui0302@gmail.com' className='border rounded-2xl pl-5 ml-3 h-12 '/>
+                </div>
 
  
                 <div className='flex flex-col desktop:w-1/2  relative justify-center '>
@@ -51,7 +52,7 @@ const SignIn:React.FC<CredentialType> = ({type}) =>{
                 </div>
             </div>
 
-            <div className='flex gap-5'>
+            <div className='flex gap-2 text-base'>
                 <input type="checkbox" /> 
                 <p>Remember me </p>
                 <p>Forgot password?</p>
