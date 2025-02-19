@@ -17,13 +17,40 @@ export default function CredentialsPage() {
       return !prev;
     })
   }
+
+  const signInPage =() => {
+    setAccount((prev)=>{
+      return !prev;
+    })
+  }
+
+  function notifUser(){
+    return(
+      <div className=''>
+        {account ? <div className='flex gap-3'>
+          <p className='text-gray-600 hidden desktop:flex gap-2'>New User?</p>
+          <span className='text-blue-900 cursor-pointer' onClick={createAccount}> Create an account </span>
+        </div> :
+        
+        <div className='flex gap-3'>
+          <p className='text-gray-600 hidden desktop:flex gap-2'>Already a member?</p>
+          <span className='text-blue-900 cursor-pointer' onClick={signInPage}> SignIn </span>
+        </div>
+        
+        }
+          
+      </div>
+    )
+  }
+
+  // <span className='text-blue-900 cursor-pointer' onClick={createAccount}></span>
   return (
     <div className='desktop:flex text-xl desktop:2xl'>
         <div className='absolute inset-0 p-10 flex justify-between '>
           <img src={Logo} alt="Logo Yum Box" className='w-14 h-14 z-10'/>
 
           <div className='h-14 flex items-center gap-5 content-center justify-center '>
-            <p className='text-gray-600 hidden desktop:flex gap-2'>New User? <span className='text-blue-900 cursor-pointer' onClick={createAccount}> Create an account</span></p>
+            {notifUser()}
 
             <div className='border-2 border-white desktop:border-gray-500 h-14 w-14 flex justify-center rounded-3xl cursor-pointer z-10'>
               <p className='text-white desktop:text-gray-500 font-bold text-3xl'>. . .</p>

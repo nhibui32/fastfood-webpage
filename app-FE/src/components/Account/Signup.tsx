@@ -21,7 +21,7 @@ export default function Signup() {
                 <div className='mb-3 desktop:w-[300px]'>
                     <button className='bg-gradient-to-r from-[#36D1DC] to-[#5B86E5] shadow rounded-2xl w-full flex items-center justify-center gap-2 py-2'>
                         <img src={Google} alt="Google" className='w-5 h-5' />
-                        <span>Sign in with Google</span>
+                        <span>Sign up with Google</span>
                     </button>
                 </div>
 
