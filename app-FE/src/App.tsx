@@ -20,11 +20,15 @@ function App() {
         <NavBar openMenu={openMenu} toggleMenu={toggleMenu}/>
         <HeadingPage openMenu={openMenu} toggleMenu={toggleMenu}/>
         </div>
+
       <Service/>
+
       <About/>
+      
       <div className="bg-gradient-to-bl from-brickRed via-goldenPeach">
         <FavoriteFood/>
       </div>
+      
       <div className="bg-black text-white text-xl desktop:text-3xl">
         <Footer/>
       </div>

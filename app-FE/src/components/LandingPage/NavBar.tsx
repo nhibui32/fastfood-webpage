@@ -2,26 +2,47 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import logo from '../../../public/images/YumBoxLogo.png'
 
+
+const shoppingCart = "/CredentialsPageImages/ShoppingCart.svg";
+const userProfile = "/CredentialsPageImages/UserCircle.svg";
+
+
 export default function NavBar({openMenu,toggleMenu}) {
     const navigate = useNavigate();
+    const[loggedIn, setLoggedIn] = useState<boolean>(false);
 
     const goToSignInPage = () => {
         navigate('/credentials');
+    }
+
+    const HomePage = () => {
+        navigate('/')
+    }
+    
+    const MenuPage = () =>{
+        navigate('/menu')
     }
     
 
     const menu = () => {
         return (
                 <ul className=' flex-row desktop:flex desktop:justify-between items-center desktop:text-2xl '>
-                    <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left'>Home</li>
+                    <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left' onClick={HomePage}>Home</li>
 
-                    <li className='relative cursor-pointer inline-block  after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left'>Menu</li>
+                    <li className='relative cursor-pointer inline-block  after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left' onClick={MenuPage}>Menu</li>
 
                     <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left'>Service</li>
 
                     <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left'>Promo</li>
 
-                    <button className='bg-yellow-600 h-10 w-[183px] desktop:h-16  rounded-lg text-white' onClick={goToSignInPage}>Create Account</button>
+                    {loggedIn ? 
+                        <div className='flex items-center gap-10'>
+                            <img src={shoppingCart} alt="Shopping Cart Icon" className="w-12 h-12 cursor-pointer" />
+                            <img src={userProfile} alt="User Profile Icon" className="w-12 h-12 cursor-pointer" />
+                        </div>
+                        : 
+                        <button className='bg-yellow-600 h-10 w-[183px] desktop:h-16  rounded-lg text-white' onClick={goToSignInPage}>Create Account</button>
+                    }
                 </ul>
         )
     }
@@ -57,7 +78,11 @@ export default function NavBar({openMenu,toggleMenu}) {
 
                     <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left'>Promo</li>
                 </ul>
-                <button className='bg-yellow-600 h-10 w-[183px] desktop:h-16  rounded-lg text-white' onClick={goToSignInPage}>Create Account</button>
+                {loggedIn ? 
+                        <button className='bg-yellow-600 h-10 w-[183px] desktop:h-16  rounded-lg text-white relative items-center flex justify-center gap-2'><img src={userProfile} alt="" className='w-8 h-8'/>My Account</button>
+                        : 
+                        <button className='bg-yellow-600 h-10 w-[183px] desktop:h-16  rounded-lg text-white' onClick={goToSignInPage}>Create Account</button>
+                }
         </div> 
     </div>
     

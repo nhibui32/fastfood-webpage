@@ -6,10 +6,17 @@ import Facebook from '../../../public/CredentialsPageImages/facebook.png'
 import { CredentialType } from '../../routes/CredentialsPage';
 
 const SignIn:React.FC<CredentialType> = ({type}) =>{
-    const[showPW, setShowPW] = useState(false);
+    const[showPW, setShowPW] = useState<boolean>(false);
+    const[forgotPw, setForgotPw] =useState<boolean>(false);
 
     const showPassword = () => {
         setShowPW((prev)=>{
+            return !prev
+        })
+    }
+
+    const forgotPassword= () => { 
+        setForgotPw((prev)=>{
             return !prev
         })
     }
@@ -19,14 +26,14 @@ const SignIn:React.FC<CredentialType> = ({type}) =>{
             
             <div className='desktop:flex w-full gap-10'>
                 <div className='mb-3 desktop:w-[300px]'>
-                    <button className='bg-gradient-to-r from-[#36D1DC] to-[#5B86E5] shadow rounded-2xl w-full flex items-center justify-center gap-2 py-2'>
+                    <button className='bg-gradient-to-r from-[#36D1DC] to-[#5B86E5] shadow rounded-2xl w-full flex items-center justify-center gap-2 py-2 cursor-pointer'>
                         <img src={Google} alt="Google" className='w-5 h-5' />
                         <span>Sign in with Google</span>
                     </button>
                 </div>
 
                 <div className='mb-3 desktop:w-[300px]'>
-                    <button className='shadow rounded-2xl w-full flex items-center justify-center gap-2 py-2'>
+                    <button className='shadow rounded-2xl w-full flex items-center justify-center gap-2 py-2 cursor-pointer'>
                         <img src={Facebook} alt="Facebook" className='w-5 h-5' />
                         <span className='text-blue-900'>With Facebook</span>
                     </button>
@@ -52,14 +59,14 @@ const SignIn:React.FC<CredentialType> = ({type}) =>{
                 </div>
             </div>
 
-            <div className='flex gap-2 text-base'>
+            <div className='flex gap-2 text-base relative'>
                 <input type="checkbox" /> 
                 <p>Remember me </p>
-                <p>Forgot password?</p>
+                <p className='text-blue-900' onClick={forgotPassword}>Forgot password?</p>
             </div>
 
             <div>
-                <button className='border w-[150px] rounded-3xl bg-gradient-to-r from-[#36D1DC] to-[#5B86E5]  ' >Sign in </button>
+                <button className='border w-[150px] rounded-3xl bg-gradient-to-r from-[#36D1DC] to-[#5B86E5] cursor-pointer' >Sign in </button>
             </div>
             
         </div>

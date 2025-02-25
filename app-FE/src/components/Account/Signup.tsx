@@ -18,15 +18,15 @@ export default function Signup() {
             <h1 className='font-bold text-3xl desktop:text-5xl text-center desktop:text-left'>Create Your Account</h1>
             
             <div className='desktop:flex w-full gap-10'>
-                <div className='mb-3 desktop:w-[300px]'>
-                    <button className='bg-gradient-to-r from-[#36D1DC] to-[#5B86E5] shadow rounded-2xl w-full flex items-center justify-center gap-2 py-2'>
+                <div className='mb-3 desktop:w-[300px] cursor-pointer'>
+                    <button className='bg-gradient-to-r from-[#36D1DC] to-[#5B86E5] shadow rounded-2xl w-full flex items-center justify-center gap-2 py-2 cursor-pointer'>
                         <img src={Google} alt="Google" className='w-5 h-5' />
                         <span>Sign up with Google</span>
                     </button>
                 </div>
 
-                <div className='mb-3 desktop:w-[300px]'>
-                    <button className='shadow rounded-2xl w-full flex items-center justify-center gap-2 py-2'>
+                <div className='mb-3 desktop:w-[300px] cursor-pointer'>
+                    <button className='shadow rounded-2xl w-full flex items-center justify-center gap-2 py-2 cursor-pointer'>
                         <img src={Facebook} alt="Facebook" className='w-5 h-5' />
                         <span className='text-blue-900'>With Facebook</span>
                     </button>
@@ -67,7 +67,7 @@ export default function Signup() {
 
             </div>
 
-            <div className='flex gap-5'>
+            <div className='flex gap-5 relative'>
                 <input type="checkbox" /> 
                 <p className='text-gray-500'>I accept the <span className='text-blue-900'>Term and Conditions</span>
                 </p>
