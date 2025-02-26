@@ -9,7 +9,7 @@ const userProfile = "/CredentialsPageImages/UserCircle.svg";
 
 export default function NavBar({openMenu,toggleMenu}) {
     const navigate = useNavigate();
-    const[loggedIn, setLoggedIn] = useState<boolean>(false);
+    const[loggedIn, setLoggedIn] = useState<boolean>(true);
 
     const goToSignInPage = () => {
         navigate('/credentials');
@@ -70,9 +70,9 @@ export default function NavBar({openMenu,toggleMenu}) {
 
         <div className={`gap-4 p-5 absolute desktop:hidden top-[70px] left-0 w-full bg-gradient-to-bl from-brickRed via-goldenPeach  flex flex-col items-center font-semibold text-lg transform transition-transform ${openMenu ? "opacity-100" : "opacity-0"}`} style={{transition: "transform 0.3s ease,   opacity 0.3s ease" }}> 
                 <ul className='flex flex-col items-center gap-4 '>
-                    <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left'>Home</li>
+                    <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left' onClick={HomePage}>Home</li>
 
-                    <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left'>Menu</li>
+                    <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left' onClick={MenuPage}>Menu</li>
 
                     <li className='relative cursor-pointer inline-block after:block after:absolute after:h-[3px] after:bg-black after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-left'>Service</li>
 
