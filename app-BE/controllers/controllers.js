@@ -5,49 +5,63 @@ import { createJWT } from "../middlewares/jwt.js";
 
 export const loginController = async (req, res)=>{
     const {email, password} = req.body;
-    try{
-        const {data:data_users_table, error:users_table_error} = await supabase.from("Users")
-        .select("email, id, credentials_id")
-        .eq("email", email);
-        if (error){
-            return res.status(500).json({error:users_table_error.message});
-        };
-
-        if (data_users_table.length === 0){
-            return res.status(400).json({error: "Wrong Password or Account Does not Exists!"});
-        };
-        
-        const {data:data_credentials_table, error:credentials_table_error} = await supabase.from("Credentials")
-        .select("hashed_password")
-        .eq("users_id", data_users_table[0]?.id)
-
-        if (error){
-            return res.status(500).json({error:credentials_table_error});
-        };
-
-        const hashed_password = data_credentials_table.hashed_password;
-        if(!bcrypt(password, hashed_password)){
-            return res.status(400).json({error: "Wrong Password or Account Does not Exists!"})
-        };
-        
-        //CREATE JWT Payload
+    try {
+        const { data: data_users_table, error: users_table_error } = await supabase
+            .from("Users")
+            .select("email, id, credentials_id")
+            .eq("email", email);
+    
+        if (users_table_error) {
+            return res.status(500).json({ error: users_table_error.message });
+        }
+    
+        if (!data_users_table || data_users_table.length === 0) {
+            return res.status(400).json({ error: "Wrong Password or Account Does Not Exist!" });
+        }
+    
+        const user = data_users_table[0];
+    
+        const { data: data_credentials_table, error: credentials_table_error } = await supabase
+            .from("Credentials")
+            .select("hashed_password")
+            .eq("users_id", user.id);
+    
+        if (credentials_table_error) {
+            return res.status(500).json({ error: credentials_table_error.message });
+        }
+    
+        if (!data_credentials_table || data_credentials_table.length === 0) {
+            return res.status(400).json({ error: "Wrong Password or Account Does Not Exist!" });
+        }
+    
+        const hashed_password = data_credentials_table[0].hashed_password;
+        const isPasswordValid = await bcrypt.compare(password, hashed_password);
+    
+        if (!isPasswordValid) {
+            return res.status(400).json({ error: "Wrong Password or Account Does Not Exist!" });
+        }
+    
+        // CREATE JWT Payload
         const jwtPayload = {
-            email: email,
-            id:data_users_table.id,
-            expires_in : process.env.JWT_EXPIRES_IN
+            email: user.email,
+            id: user.id,
+            expires_in: process.env.JWT_EXPIRES_IN
         };
-
+    
         const token = createJWT(jwtPayload);
-
-        const responseData = {
-            id: data_users_table.id,
-            accessToken: token
-        };
-        
-        res.status(200).json({message:"Login Successfully", data:responseData});
-    }catch(error){
-        res.status(500).json({message:error.message});
+    
+        return res.status(200).json({
+            message: "Login Successfully",
+            data: {
+                id: user.id,
+                accessToken: token
+            }
+        });
+    
+    } catch (error) {
+        return res.status(500).json({ error: error.message });
     }
+    
 }
 
 
