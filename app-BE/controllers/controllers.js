@@ -2,6 +2,7 @@
 import supabase from "../config/database.js";
 import bcrypt from "bcrypt";
 import { createJWT } from "../middlewares/jwt.js";
+import nodemailer from "nodemailer";
 
 export const loginController = async (req, res)=>{
     const {email, password} = req.body;
@@ -111,5 +112,53 @@ export const signupController = async (req,res)=>{
 
     }catch(error){
         return res.status(500).json({error:error})
+    }
+}
+
+//transporter for nodemailer
+const transporter = nodemailer.createTransport({
+    service:"gmail",
+    auth:{
+        user:"longhai2511@gmail.com",
+        pass:"evhgbqntwloqbcba"
+    }
+});
+
+//Send password reset email
+const sendPasswordResetEmail = async (email, resetUrl) => {
+    try{
+        const mailOptions = {
+            from: 'longhai2511@gmail.com', // sender address
+            to: email, // user's email
+            subject: 'Password Reset Request',
+            html: `<p>You requested a password reset from VN Virtual Experience. 
+                    Click <a href="${resetUrl}">here</a> to reset 
+                    your password. This link will expire in 30 
+                    minutes.</p>`
+        };
+        await transporter.sendMail(mailOptions);
+        return res.status(200).json({message:'Password reset email sent successfully'});
+
+    }catch(error){
+        return res.status(200).json({error:`Error sending password reset email: ${error.message}`});
+    }
+}
+
+//Forgot password controller
+const forgotPasswordController = async (req,res)=>{
+    const {email} = req.body;
+    try{
+        //1. Find User email
+        const {data:data_users_table, error:error_users_table} = await supabase.from("Users").select("email","token").eq("email",email);
+
+        //2. Check if token is there
+        if(data_users_table[0].token) return res.status(500).json({error:"The link is already sent!"});
+
+        //3. Genmerate reset token
+        const resetToken = Math.random().toString(36).slice(2);
+
+        
+    }catch(error){
+
     }
 }
