@@ -149,15 +149,20 @@ const forgotPasswordController = async (req,res)=>{
     const {email} = req.body;
     try{
         //1. Find User email
-        const {data:data_users_table, error:error_users_table} = await supabase.from("Users").select("email","token").eq("email",email);
+        const {data:data_users_table, error:error_users_table} = await supabase.from("Users").select("email","id").eq("email",email);
 
-        //2. Check if token is there
-        if(data_users_table[0].token) return res.status(500).json({error:"The link is already sent!"});
+        //2. Verify Token
+        const {data:data_credentials_table} = await supabase.from("Credentials").select("reset_token").eq("data_")
 
         //3. Genmerate reset token
         const resetToken = Math.random().toString(36).slice(2);
 
-        
+        //4. Hash the reset token
+        const salt = 10;
+        const hashedToken = await bcrypt.hash(resetToken, salt);
+
+        //5. Save Token and Password Reset token expiration time;
+        const {data:data_credentials_table} = await supabase.from("Credentials").select("reset_token").eq("data_")
     }catch(error){
 
     }
