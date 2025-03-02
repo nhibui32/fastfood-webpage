@@ -151,8 +151,28 @@ const forgotPasswordController = async (req,res)=>{
         //1. Find User email
         const {data:data_users_table, error:error_users_table} = await supabase.from("Users").select("email","id").eq("email",email);
 
+        if(error_users_table){
+            return res.status(500).json({error:error_users_table});
+        }
+
+        if(data_users_table.length == 0){
+            return res.status(400).json({message:'Account does not exist!'});
+        }
+
+
+
         //2. Verify Token
-        const {data:data_credentials_table} = await supabase.from("Credentials").select("reset_token").eq("data_")
+        const {data:data_credentials_table, error:error_credentials_table} = await supabase.from("Credentials").select("reset_token").eq("credentials_id", data_users_table[0].id)
+        
+        if(error_credentials_table){
+            return res.status(500).json({error:error_users_table});
+        }
+
+        if(data_credentials_table.length !== 0 && resetToken){
+            return res.status(400).json({message:"The link is already being created, please check your email"})
+        }
+
+        
 
         //3. Genmerate reset token
         const resetToken = Math.random().toString(36).slice(2);
@@ -162,7 +182,7 @@ const forgotPasswordController = async (req,res)=>{
         const hashedToken = await bcrypt.hash(resetToken, salt);
 
         //5. Save Token and Password Reset token expiration time;
-        const {data:data_credentials_table} = await supabase.from("Credentials").select("reset_token").eq("data_")
+        
     }catch(error){
 
     }
