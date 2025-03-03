@@ -145,7 +145,7 @@ const sendPasswordResetEmail = async (email, resetUrl) => {
 }
 
 //Forgot password controller
-const forgotPasswordController = async (req,res)=>{
+export const forgotPasswordController = async (req,res)=>{
     const {email} = req.body;
     try{
         //1. Find User email
@@ -159,31 +159,45 @@ const forgotPasswordController = async (req,res)=>{
             return res.status(400).json({message:'Account does not exist!'});
         }
 
-
-
+        let currentTime = new Date();
+        let userId = data_users_table[0].id;
         //2. Verify Token
-        const {data:data_credentials_table, error:error_credentials_table} = await supabase.from("Credentials").select("reset_token").eq("credentials_id", data_users_table[0].id)
-        
+        const {data:data_credentials_table, error:error_credentials_table} = await supabase.from("Credentials").select("reset_token", "reset_password_expired_time").eq("credentials_id", data_users_table[0].id)
+
         if(error_credentials_table){
-            return res.status(500).json({error:error_users_table});
+            return res.status(500).json({error:error_credentials_table});
         }
 
-        if(data_credentials_table.length !== 0 && resetToken){
-            return res.status(400).json({message:"The link is already being created, please check your email"})
-        }
-
-        
-
-        //3. Genmerate reset token
         const resetToken = Math.random().toString(36).slice(2);
-
-        //4. Hash the reset token
-        const salt = 10;
+        const salt = await bcrypt.genSalt(10);
         const hashedToken = await bcrypt.hash(resetToken, salt);
 
-        //5. Save Token and Password Reset token expiration time;
-        
-    }catch(error){
+        if(!data_credentials_table || data_credentials_table.length == 0){
+            //Working on create new token
+            const {data,error} = await supabase.from("Credentials")
+            .update({reset_token:hashedToken, reset_password_expired_time:currentTime.toISOString})
+            .eq("users_id",userId);
 
+            const resetUrl = `http://localhost:5000/reset-password?token=${resetToken}&userId=${userId}`;
+            await sendPasswordResetEmail(email, resetUrl);
+            res.status(200).json({message: "Password Reset Link to Your Email"})
+        }
+
+        const resetPasswordExpiredTime = new Date(data_credentials_table[0].reset_token);
+
+        if (resetPasswordExpiredTime < currentTime){
+            const {data,error} = await supabase.from("Credentials")
+            .update({reset_token:hashedToken, reset_password_expired_time:currentTime.toISOString})
+            .eq("users_id",userId);
+
+            const resetUrl = `http://localhost:5000/reset-password?token=${resetToken}&userId=${userId}`;
+            await sendPasswordResetEmail(email, resetUrl);
+            res.status(200).json({message: "Password Reset Link to Your Email"})
+        }
+
+        return res.status(200).json({message:"Reset URL is already sent please check your email"})
+
+    }catch(error){
+        return res.status(200).json({error:error})
     }
 }
