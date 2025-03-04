@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router'
 import logo from '../../../public/images/YumBoxLogo.png'
+// import { FaLess } from 'react-icons/fa';
 
 
 const shoppingCart = "/CredentialsPageImages/ShoppingCart.svg";
@@ -37,7 +38,10 @@ export default function NavBar({openMenu,toggleMenu}) {
 
                     {loggedIn ? 
                         <div className='flex items-center gap-10'>
-                            <img src={shoppingCart} alt="Shopping Cart Icon" className="w-12 h-12 cursor-pointer" />
+                            <div className='flex relative'>
+                                <img src={shoppingCart} alt="Shopping Cart Icon" className="w-12 h-12 cursor-pointer" />
+                                <p className='text-base absolute -right-2 bottom-0 font-bold text-black'>4</p>
+                            </div>
                             <img src={userProfile} alt="User Profile Icon" className="w-12 h-12 cursor-pointer" />
                         </div>
                         : 

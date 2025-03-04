@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.tsx'
 import CredentialsPage from './routes/CredentialsPage.tsx'
 import MenuPage from './routes/MenuPage.tsx'
+import ProfilePage from './routes/ProfilePage.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
         <Route path='/' element = {<App></App>}></Route>
         <Route path='/credentials' element = {<CredentialsPage></CredentialsPage>}></Route>
         <Route path='/menu' element={<MenuPage/>}></Route>
+        <Route path='/myProfile' element={<ProfilePage/>}></Route>
       </Routes>
       
     </BrowserRouter>
