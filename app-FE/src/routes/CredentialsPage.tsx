@@ -10,7 +10,7 @@ export type CredentialType = {
 }
 
 export default function CredentialsPage() {
-  const[account, setAccount] = useState(false)
+  const[account, setAccount] = useState(true)
 
   const createAccount= () => {
     setAccount((prev)=>{

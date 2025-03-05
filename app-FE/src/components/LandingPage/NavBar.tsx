@@ -10,7 +10,7 @@ const userProfile = "/CredentialsPageImages/UserCircle.svg";
 
 export default function NavBar({openMenu,toggleMenu}) {
     const navigate = useNavigate();
-    const[loggedIn, setLoggedIn] = useState<boolean>(true);
+    const[loggedIn, setLoggedIn] = useState<boolean>(false);
 
     const goToSignInPage = () => {
         navigate('/credentials');

@@ -2,10 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    --primary: 255,122,0;
-    --secondary: 255,193,7;
-    --background: 255,255,255;
+@media(prefers-color-scheme:light){
+    :root{
+        --primary: 255,122,0;
+        --secondary: 255,193,7;
+        --background: 255,255,255;
+        --containerBackground: 248, 249, 250;
+        --primaryText:51, 51, 51;
+        --secondaryText: 119, 119, 119;
+        --border: 224, 224, 224;
+        background: rgba(var(--background));
+    }
+}
 
+.dark {
+    --primary: 255, 152, 0;
+    --secondary: 255, 193, 7;
+    --background: 18, 18, 18;
+    --containerBackground: 30, 30, 30;
+    --primaryText:255, 255, 255;
+    --secondaryText: 176, 176, 176;
+    --border: 51, 51, 51;
     background: rgba(var(--background));
 }
+
+/* Primary Color (#FF7A00 - Vibrant Orange)
+
+Use for main CTA buttons like "Add to Cart", "Checkout", and "Continue to Payment"
+Highlights active menu categories
+Floating cart button
+Secondary Color (#FFC107 - Warm Yellow)
+
+Use for discount badges, promotional labels, and special offers
+Can be used as a hover effect for primary buttons
+Background (#FFFFFF - White)
+
+The main app background for a clean, fresh look
+Card/Container Background (#F8F9FA - Light Gray)
+
+Background for cards displaying food items
+Order summary and payment sections
+Primary Text (#333333 - Dark Gray)
+
+Used for all main text, including food item names and menu categories
+Secondary Text (#777777 - Medium Gray)
+
+Used for less important text, such as descriptions and smaller labels
+Border/Outline (#E0E0E0 - Soft Gray)
+
+Used for separating sections, dividers, and button outlines */
