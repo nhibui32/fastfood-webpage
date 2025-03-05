@@ -19,6 +19,13 @@ export default function DisplayMenu() {
     setcartItems([...cartItems, { name, price, quantity: 1 }]);
   };
   
+  const handleDecrease =(name)=>{
+
+  }
+
+  const handleIncrease = (name) =>{
+
+  }
 
   
   return (
@@ -66,11 +73,11 @@ export default function DisplayMenu() {
 
             {isInCart? 
               <button className='bg-red-300 rounded-2xl border-gray-700 border w-[150px] h-10 flex items-center justify-between absolute -bottom-5 left-[30%] px-3'>
-                <img src={decrease} alt="decrease icon" className='w-6 h-6'/>
+                <img src={decrease} alt="decrease icon" className='w-6 h-6' onClick={()=>handleDecrease(name)}/>
                 <p className='text-center w-6 h-6 flex items-center justify-center bg-slate-500 text-white rounded'>
                   {isInCart ? isInCart.quantity : 0}
                 </p>
-                <img src={increase} alt="increase icon" className='w-6 h-6'/>
+                <img src={increase} alt="increase icon" className='w-6 h-6' onClick={()=> handleIncrease(name)}/>
               </button> 
               :
               <button className='bg-red-300 rounded-2xl border-gray-700 border w-[150px] h-10 flex items-center justify-between absolute -bottom-5 left-[30%] px-3' onClick={()=> handleOnClick(name, price)}>

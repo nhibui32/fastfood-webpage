@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root{
+    --primary: 255,122,0;
+    --secondary: 255,193,7;
+    --background: 255,255,255;
+
+    background: rgba(var(--background));
+}

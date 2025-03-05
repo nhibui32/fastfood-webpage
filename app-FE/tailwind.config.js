@@ -11,6 +11,7 @@ export default {
         brickRed: '#8F2A16',
         goldenPeach: '#FFC259',
         sunflowerGold: '#EBAB08',
+        primary: "rgba(var(--primary))"
       },
       screens: {
         desktop: '1440px',
