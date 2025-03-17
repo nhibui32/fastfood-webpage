@@ -1,19 +1,19 @@
 import React from 'react'
 import { useState } from 'react'
 import {menu} from '../../data/Menu.js'
+import Cart from '../../components/HomePage/Cart.js'
 
 const shoppingCart = "/CredentialsPageImages/ShoppingCart.svg";
 const increase ="/Menu/increase.svg";
 const decrease ='/Menu/decrease.svg';
 
-export default function Dashboard() {
+export default function Dashboard({cartItems, setCartItems}) {
       // menu[0] default the first category on the menu
       // so the current state at default will be menu[0].category which is pizza 
     const[selectedCategory, setSelectedCategory] = useState(menu[0].category)
     // check if the items already in cart?
-    const[cartItems, setCartItems] =useState([]);
-    const handleOnClick = (name, price) => {
-      setCartItems([...cartItems, { name, price, quantity: 1 }]);
+    const handleOnClick = (name, price,image) => {
+      setCartItems([...cartItems, { name, price, image, quantity: 1 }]);
     };
     
     const handleDecrease =(name)=>{
@@ -60,7 +60,7 @@ export default function Dashboard() {
             return(
               <div key={index} className='bg-containerBackground h-[400px] p-3 space-y-3 relative'>
                 <img src={item.image} alt="" className='w-full object-fit h-[200px] rounded-lg'/>
-                <p className='text-wrap'>{item.name}</p>
+                <p className='text-wrap text-primaryText'>{item.name}</p>
                 <p className='text-secondaryText text-sm'>{item.description}</p>
                 <p className='text-primary font-bold'>${item.price.toFixed(2)}</p>
                 <div className="absolute -bottom-5 left-1/2 transform -translate-x-1/2">
@@ -73,9 +73,9 @@ export default function Dashboard() {
                 
                   </button>
                     :
-                    <button className='flex items-center gap-3 bg-primary p-2 rounded-lg' onClick={()=> handleOnClick(name, price)}>
+                    <button className='flex items-center gap-3 bg-primary p-2 pl-1 rounded-lg' onClick={()=> handleOnClick(name, price, item.image)}>
                     <img src={shoppingCart} alt="shopping Cart Icon" className='w-8 h-8'/>
-                    <p>Add to cart</p>
+                    <p className='text-base text-nowrap'>Add to cart</p>
                   </button>
                   }
                 </div>
@@ -84,58 +84,11 @@ export default function Dashboard() {
           })
         }
       </div>
+      <div className='hidden'>
+        <Cart items={cartItems}/>
+      </div>
 
     </div>
   )
 }
-
-
-
-// import React from 'react'
-// import DisplayMenu from './DisplayMenu'
-// import {menu} from '../../data/Menu.js'
-// import { Swiper, SwiperSlide } from 'swiper/react'
-// import 'swiper/css'
-// import 'swiper/css/pagination'
-// import 'swiper/css/free-mode'
-// import { Navigation} from 'swiper/modules';
-// import { DiVim } from 'react-icons/di';
-
-
-// export default function Dashboard() {
-//   return (
-//     <div className='text-primaryText p-5 desktop:p-10'>
-//       <h1 className='text-3xl desktop:text-5xl font-bold'>Hey Nhi!</h1>
-//       <div className='mt-5 text-3xl desktop:text-5xl bg-containerBackground'>
-//         <h1>Categories</h1>
-//         <div className='flex items-center content-center justify-center mt-5 p-5 text-xl desktop:text-2xl '>
-//           <Swiper
-//             slidesPerView={2}
-//             spaceBetween={15}
-//             navigation={true}
-//             modules={[Navigation]}
-//             centeredSlides={true}
-//             breakpoints={{
-//               1024:{slidesPerView:3},
-//               1440:{slidesPerView:5},
-//             }}
-//           >
-//             {menu.map((category, index)=>{
-//               return (
-//                 <SwiperSlide key={index} className='bg-gray-600 text-center justify-center'>
-//                   <div className=''>
-//                     <p>{category.category}</p>
-//                     <img src={category.catImg} alt="" className='w-[100px] h-[100px]'/>
-//                   </div>
-//                 </SwiperSlide>
-//               )
-//             })}
-
-//           </Swiper>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
-
 
