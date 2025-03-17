@@ -17,11 +17,15 @@ import biancoPizza from '../../public/images/Pizza-Bianco-with-Rosemary-and-Panc
 import jalapenoBurger from '../../public/images/Spicy-Jalapeno-Burger.jpg'
 import veggieBurger from '../../public/images/Veggie-Burger.jpg'
 import veggiePizza from '../../public/images/Veggie-Delight-Pizza.jpg'
-import catIcon from '../../public/Menu/pizzaCat.jpg'
+import pizzaIcon from '../../public/Menu/pizza.png'
+import sandwichIcon from '../../public/Menu/Sandwich.png'
+import drinkIcon from '../../public/Menu/Drink.png'
+import burgerIcon from '../../public/Menu/burger.png'
+import kidMealIcon from '../../public/Menu/kidmeal.png'
 export const menu = [
     {
         "category": "Pizza",
-        catImg: catIcon,
+        catImg: pizzaIcon,
         "items": [
             {
                 image: classicPizza,
@@ -52,7 +56,7 @@ export const menu = [
     ,
       {
          "category": "Burger",
-         catImg: catIcon,
+         catImg: burgerIcon,
          "items": [
              {
                 image: classicBurger,
@@ -82,7 +86,7 @@ export const menu = [
      },
      {
          "category": "Sandwich",
-         catImg: catIcon,
+         catImg: sandwichIcon,
          "items": [
              {
                 image: clubSandwich,
@@ -112,7 +116,7 @@ export const menu = [
      },
      {
          "category": "Drink",
-         catImg: catIcon,
+         catImg: drinkIcon,
          "items": [
              {
                 image: soda,
@@ -142,7 +146,7 @@ export const menu = [
      },
      {
          "category": "Kids Meal",
-         catImg: catIcon,
+         catImg: kidMealIcon,
          "items": [
              {
                 image: miniBurger,

@@ -10,8 +10,15 @@ export default function MenuPage() {
 
   return (
       <div className=''>
-        <TopNavBar/>
-        <SideBar/>
+        <div className='w-1/3'>
+          <SideBar/>
+        </div>
+
+        <div className='desktop:ml-64 desktop:mr-64'>
+          <TopNavBar/>
+          <Dashboard/>
+        </div>
+        
         <HomeNavBar/>
       </div>
   )
