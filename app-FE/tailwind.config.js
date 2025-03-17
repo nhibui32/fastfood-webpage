@@ -18,6 +18,7 @@ export default {
         primaryText:"rgba(var(--primaryText))",
         secondaryText:"rgba(var(--secondaryText))",
         border:"rgba(var(--border))",
+        hoverBackground: "rgba(var(--hoverBackground))",
       },
       screens: {
         desktop: '1440px',

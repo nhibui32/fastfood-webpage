@@ -17,9 +17,11 @@ import biancoPizza from '../../public/images/Pizza-Bianco-with-Rosemary-and-Panc
 import jalapenoBurger from '../../public/images/Spicy-Jalapeno-Burger.jpg'
 import veggieBurger from '../../public/images/Veggie-Burger.jpg'
 import veggiePizza from '../../public/images/Veggie-Delight-Pizza.jpg'
+import catIcon from '../../public/Menu/pizzaCat.jpg'
 export const menu = [
     {
         "category": "Pizza",
+        catImg: catIcon,
         "items": [
             {
                 image: classicPizza,
@@ -50,6 +52,7 @@ export const menu = [
     ,
       {
          "category": "Burger",
+         catImg: catIcon,
          "items": [
              {
                 image: classicBurger,
@@ -79,6 +82,7 @@ export const menu = [
      },
      {
          "category": "Sandwich",
+         catImg: catIcon,
          "items": [
              {
                 image: clubSandwich,
@@ -108,6 +112,7 @@ export const menu = [
      },
      {
          "category": "Drink",
+         catImg: catIcon,
          "items": [
              {
                 image: soda,
@@ -137,6 +142,7 @@ export const menu = [
      },
      {
          "category": "Kids Meal",
+         catImg: catIcon,
          "items": [
              {
                 image: miniBurger,

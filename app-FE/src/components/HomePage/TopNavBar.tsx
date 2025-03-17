@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 const logo = '/Logo/YumBoxLogo.png';
 
-export default function Dashboard() {
+export default function TopNavBar() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   return (
